@@ -15,22 +15,14 @@
 </head>
 <body>
         <?php
-        $max = "Hello";
-        $sukriya = "Alhamdulillah";
-        $read = true;
-
-        if ($read) {
-            $msg = "Hello gamers !";
-        }
-
         $books = [
             [
-            'name' => 'masud',
-            'author' =>"The Hit man",
+            'name' => 'The Hit Man',
+            'author' =>"Masud",
             'link' => "https://www.facebook.com/"
             ],
             [
-                'name' => 'masud',
+                'name' => 'And then there were none',
                 'author' =>"Rana",
                 'link' => "https://www.facebook.com/"
             ],
@@ -41,24 +33,21 @@
             ],
         ];
 
-        function filterByAuthor ($books) {
-            $filterBooks = [];
+        function filter ($items, $key, $value) {
+            $filteredItems = [];
 
-            foreach ($books as $book) {
-                if ($book['author'] === 'Rana') {
-                    $filterBooks[] = $book;
+            foreach ($items as $item) {
+                if ($item[$key] === $value) {
+                    $filteredItems[] = $item;
                 }
             }
-            return $filterBooks;
+            return $filteredItems;
         }
+        $filterBooks = filter($books, 'author', 'Rana');
         ?>
-
-
     <h1>
-
-   <?= $msg ?>
    <ul>
-    <?php foreach (filterByAuthor($books) as $book): ?>
+    <?php foreach ($filterBooks as $book): ?>
     <?php if ($book['name'] === 'Rana') ?>
         <li>
             <a href="<?= $book['link'] ?>" >
